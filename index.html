@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zakwan Mansuri — AI Automation Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 99;
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: #1a1a1a; }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 140px 60px 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .available-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #2d7a4f;
+    background: #f0faf5;
+    border: 1px solid #c3e6d4;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .green-dot {
+    width: 6px; height: 6px;
+    background: #2d7a4f;
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #555;
+    font-weight: 400;
+    line-height: 1.75;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 11px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.18s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-solid {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .btn-solid:hover { background: #333; transform: translateY(-1px); }
+
+  .btn-border {
+    background: transparent;
+    color: #1a1a1a;
+    border: 1px solid #d0d0d0;
+  }
+  .btn-border:hover { border-color: #1a1a1a; transform: translateY(-1px); }
+
+  /* Hero right — stats */
+  .hero-right {
+    background: #f8f8f6;
+    border: 1px solid #e8e8e8;
+    padding: 36px;
+    border-radius: 6px;
+  }
+
+  .stats-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 24px;
+  }
+
+  .stats-list {
+    list-style: none;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .stat-key { font-size: 13px; color: #666; font-weight: 400; }
+  .stat-val { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .pill {
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    color: #555;
+    background: #fff;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid #e8e8e8;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-alt {
+    background: #f8f8f6;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 80px 0;
+  }
+
+  .section-alt .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .sec-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .skill-block {
+    background: #fff;
+    padding: 28px;
+    transition: background 0.2s;
+  }
+  .skill-block:hover { background: #fafaf8; }
+
+  .skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    background: #f2f2f0;
+    border-radius: 3px;
+    color: #555;
+  }
+
+  /* ── WORK ── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .work-item {
+    background: #fff;
+    padding: 32px;
+    transition: background 0.2s;
+  }
+  .work-item:hover { background: #fdfcfb; }
+
+  .work-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+
+  .tech-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    background: #f2f2f0;
+    color: #444;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  .work-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .work-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.75;
+  }
+
+  .work-result {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #2d7a4f;
+    background: #f0faf5;
+    border: 1px solid #c3e6d4;
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .project-item {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    padding: 28px;
+    border-radius: 6px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .project-item:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  .project-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #bbb;
+    margin-bottom: 16px;
+  }
+
+  .project-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  /* ── ABOUT ── */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-sidebar {
+    background: #f8f8f6;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    padding: 28px;
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebar-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  .sidebar-role {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .info-list { list-style: none; }
+  .info-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 12.5px;
+    color: #555;
+    align-items: flex-start;
+  }
+  .info-item:last-child { border-bottom: none; }
+  .info-icon { color: #999; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+
+  .about-body p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .about-body p strong { color: #1a1a1a; font-weight: 600; }
+
+  .about-body h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .engage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .engage-card {
+    border: 1px solid #e8e8e8;
+    padding: 16px;
+    border-radius: 4px;
+    background: #fafaf8;
+  }
+  .engage-card-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+  .engage-card-desc { font-size: 12px; color: #888; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: #1a1a1a;
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  #contact .sec-tag { color: #555; }
+
+  #contact h2 {
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .contact-sub {
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid #333;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  .contact-btn:hover { border-color: #666; color: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy { font-size: 12px; color: #444; }
+
+  /* ── Reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
+    .section { padding: 60px 24px; }
+    .section-alt .section-inner { padding: 0 24px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .about-layout { grid-template-columns: 1fr; gap: 32px; }
+    .about-sidebar { position: static; }
+    #contact { padding: 60px 24px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+
+  @media (max-width: 560px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .engage-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="logo">Zakwan Mansuri</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="available-tag">
+      <div class="green-dot"></div>
+      Available for remote engagements
+    </div>
+    <h1>AI Automation Consultant</h1>
+    <p class="hero-sub">
+      6+ years designing and deploying intelligent systems — multi-agent workflows, LLM automation, RAG pipelines, and end-to-end ML — for clients across India, Australia, and international markets.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-solid">Get in Touch</a>
+      <a href="#work" class="btn btn-border">View Work</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stats-label">At a Glance</div>
+    <ul class="stats-list">
+      <li class="stat-row">
+        <span class="stat-key">Experience</span>
+        <span class="stat-val">6+ Years</span>
+      </li>
+      <li class="stat-row">
+        <span class="stat-key">Analyst time reduced</span>
+        <span class="stat-val">Up to 85%</span>
+      </li>
+      <li class="stat-row">
+        <span class="stat-key">Data access speed</span>
+        <span class="stat-val">90% faster</span>
+      </li>
+      <li class="stat-row">
+        <span class="stat-key">Model fine-tuned</span>
+        <span class="stat-val">30B Params</span>
+      </li>
+      <li class="stat-row">
+        <span class="stat-key">Markets served</span>
+        <span class="stat-val">India · AU · Global</span>
+      </li>
+    </ul>
+    <div class="tag-row">
+      <span class="pill">Agentic AI</span>
+      <span class="pill">LLM Fine-tuning</span>
+      <span class="pill">RAG</span>
+      <span class="pill">ML Pipelines</span>
+      <span class="pill">Remote-First</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section class="section-alt" id="skills">
+  <div class="section-inner">
+    <div class="sec-tag">Core Expertise</div>
+    <h2>Skills & Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-block reveal">
+        <div class="skill-name">Agentic AI & LLMs</div>
+        <div class="tags">
+          <span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">CrewAI</span>
+          <span class="tag">SmolAgents</span><span class="tag">Multi-Agent Systems</span>
+          <span class="tag">RAG Architecture</span><span class="tag">Prompt Engineering</span>
+          <span class="tag">Fine-tuning</span><span class="tag">LiteLLM</span><span class="tag">LlamaIndex</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-name">ML & Data Science</div>
+        <div class="tags">
+          <span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">PyTorch</span>
+          <span class="tag">XGBoost</span><span class="tag">Random Forest</span>
+          <span class="tag">NLP</span><span class="tag">CNNs</span><span class="tag">LSTM</span>
+          <span class="tag">Forecasting</span><span class="tag">Anomaly Detection</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-name">Vector & Semantic Search</div>
+        <div class="tags">
+          <span class="tag">ChromaDB</span><span class="tag">Pinecone</span><span class="tag">FAISS</span>
+          <span class="tag">pgvector</span><span class="tag">Semantic Search</span>
+          <span class="tag">Vector Indexing</span><span class="tag">MiniLM Embeddings</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-name">Backend & Infrastructure</div>
+        <div class="tags">
+          <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span>
+          <span class="tag">MySQL</span><span class="tag">Docker</span><span class="tag">AWS</span>
+          <span class="tag">REST APIs</span><span class="tag">SSE Streaming</span><span class="tag">CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-name">Automation & Tooling</div>
+        <div class="tags">
+          <span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">OCR Pipelines</span>
+          <span class="tag">STT / TTS</span><span class="tag">IVR</span>
+          <span class="tag">Streamlit</span><span class="tag">Tableau</span><span class="tag">Power BI</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-name">Languages & Data</div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">R</span>
+          <span class="tag">Pandas</span><span class="tag">NumPy</span>
+          <span class="tag">Feature Engineering</span><span class="tag">EDA</span><span class="tag">Statistics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="sec-tag">Selected Projects</div>
+  <h2>Client Engagements</h2>
+  <div class="work-grid">
+
+    <div class="work-item reveal">
+      <div class="work-tech">
+        <span class="tech-tag">LLM Fine-tuning (30B)</span>
+        <span class="tech-tag">vLLM</span>
+        <span class="tech-tag">Multi-tenant PostgreSQL</span>
+      </div>
+      <div class="work-title">Regulatory AI & Compliance Automation</div>
+      <div class="work-desc">Fine-tuned a 30B parameter model on domain-specific regulatory data. Built agentic reasoning loops with tool-calling for document retrieval, compliance flagging, and structured audit reporting. Deployed on private GPU infrastructure with LiteLLM orchestration.</div>
+      <span class="work-result">↓ 70% reduction in manual review time</span>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tech">
+        <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">SSE Streaming</span>
+        <span class="tech-tag">PostgreSQL JSONB</span>
+      </div>
+      <div class="work-title">Conversational Analytics Agent</div>
+      <div class="work-desc">Production AI assistant embedded in a financial ERP dashboard. Multi-turn memory, real-time streaming, per-user conversation history. Enabled C-suite and finance teams to query complex datasets in plain English without analyst dependency.</div>
+      <span class="work-result">↓ 85% reduction in analyst turnaround</span>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tech">
+        <span class="tech-tag">OCR</span>
+        <span class="tech-tag">STT / TTS</span>
+        <span class="tech-tag">IVR</span>
+        <span class="tech-tag">MySQL</span>
+      </div>
+      <div class="work-title">Invoice & Document Processing Pipeline</div>
+      <div class="work-desc">Multimodal automation pipeline integrating invoice OCR, bank statement parsing, and an IVR calling system. Mapped extracted data directly into enterprise databases, eliminating manual data entry for accounts teams.</div>
+      <span class="work-result">↑ 25+ hours saved per week</span>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tech">
+        <span class="tech-tag">NL2SQL</span>
+        <span class="tech-tag">ChromaDB</span>
+        <span class="tech-tag">Multi-Model Routing</span>
+      </div>
+      <div class="work-title">NL2SQL Executive Intelligence Engine</div>
+      <div class="work-desc">Natural language to SQL over a 200+ table production database. Cost-optimised pipeline routing queries by complexity across Gemini 1.5 Flash, Phi-3 Mini, and Gemma 3. Schema-aware retrieval via MiniLM embeddings and ChromaDB.</div>
+      <span class="work-result">↓ 90% faster internal data turnaround</span>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tech">
+        <span class="tech-tag">XGBoost</span>
+        <span class="tech-tag">Random Forest</span>
+        <span class="tech-tag">Geospatial Features</span>
+      </div>
+      <div class="work-title">Demand Forecasting & Resource Optimisation</div>
+      <div class="work-desc">Predictive models for peak-hour demand and regional supply shortages on a ride-sharing platform. Geospatial and temporal feature engineering at scale with automated retraining and production deployment.</div>
+      <span class="work-result">↑ 30% improved resource allocation</span>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tech">
+        <span class="tech-tag">CrewAI</span>
+        <span class="tech-tag">LangChain</span>
+        <span class="tech-tag">Streamlit</span>
+      </div>
+      <div class="work-title">Multi-Agent Financial Research System</div>
+      <div class="work-desc">Four specialised agents (research, analysis, sentiment, synthesis) autonomously generating equity research reports. Live data from Yahoo Finance and Tavily. 100+ LLM provider support with zero-config model swapping. ASX and global coverage.</div>
+      <span class="work-result">Global equity research automation</span>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section class="section-alt" id="projects">
+  <div class="section-inner">
+    <div class="sec-tag">Open Source</div>
+    <h2>Notable Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-item reveal">
+        <div class="project-num">01</div>
+        <div class="project-title">AI-FAQs — FAQ Generation Tool</div>
+        <div class="project-desc">LLM-powered tool that automatically generates structured FAQs from business data. Integrated as a RAG knowledge base for in-product chatbots. Solo developer and open-source maintainer.</div>
+        <div class="tags">
+          <span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Python</span><span class="tag">Open Source</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">02</div>
+        <div class="project-title">MCQ Generation System</div>
+        <div class="project-desc">Production-ready MCQ generator supporting GPT-4, Gemini, and local Ollama. Processes PDFs and text, exports structured CSV output with grammar and complexity evaluation.</div>
+        <div class="tags">
+          <span class="tag">LangChain LCEL</span><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Ollama</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">03</div>
+        <div class="project-title">Recommendation & Matching Systems</div>
+        <div class="project-desc">Recommendation engines for talent platforms and e-commerce using NLP-based semantic similarity, unsupervised clustering, and content-based filtering. 20–30% improvement in match accuracy.</div>
+        <div class="tags">
+          <span class="tag">NLP</span><span class="tag">Clustering</span><span class="tag">Semantic Similarity</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="sec-tag">Background</div>
+  <h2>About Me</h2>
+  <div class="about-layout">
+
+    <div class="about-sidebar">
+      <div class="sidebar-name">Zakwan Mansuri</div>
+      <div class="sidebar-role">AI Automation Consultant · ML Engineer</div>
+      <ul class="info-list">
+        <li class="info-item">
+          <span class="info-icon">📍</span>
+          <span>Ahmedabad, India<br>Remote — Worldwide</span>
+        </li>
+        <li class="info-item">
+          <span class="info-icon">✉</span>
+          <span>mansurizak@gmail.com</span>
+        </li>
+        <li class="info-item">
+          <span class="info-icon">📱</span>
+          <span>+91 97121 21230</span>
+        </li>
+        <li class="info-item">
+          <span class="info-icon">🎓</span>
+          <span>B.E. Information Technology<br>GEC Gandhinagar, 2017</span>
+        </li>
+        <li class="info-item">
+          <span class="info-icon">✅</span>
+          <span>Immediately available</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="about-body">
+      <p>I'm an <strong>AI Automation Consultant</strong> with 6+ years of experience designing and deploying intelligent systems for clients across India, Australia, and international markets. I work across the full lifecycle — from problem definition and architecture through to production deployment.</p>
+      <p>My specialisation is <strong>multi-agent AI workflows</strong>, LLM-powered automation, RAG pipelines, and end-to-end ML systems. I've helped enterprise and SMB clients reduce manual effort significantly, automate document-heavy processes, and make complex data accessible in plain English.</p>
+      <p>I'm model-agnostic — OpenAI, Gemini, Ollama, or fine-tuned private models — and focus on what actually works for the client's use case. I care about <strong>measurable outcomes</strong>, not hype.</p>
+      <p>Outside client work, I contribute to open source projects, speak at Google Meetups and Data Science Bootcamps in Ahmedabad, and continuously upskill in areas like LangGraph, advanced agentic systems, and GPU model serving.</p>
+
+      <h3>Engagement Models</h3>
+      <div class="engage-grid">
+        <div class="engage-card">
+          <div class="engage-card-title">Hourly Consulting</div>
+          <div class="engage-card-desc">Flexible on-demand advisory and development</div>
+        </div>
+        <div class="engage-card">
+          <div class="engage-card-title">Fixed-Price Projects</div>
+          <div class="engage-card-desc">Scoped deliverables with clear outcomes</div>
+        </div>
+        <div class="engage-card">
+          <div class="engage-card-title">Monthly Retainer</div>
+          <div class="engage-card-desc">Ongoing embedded consulting partnership</div>
+        </div>
+        <div class="engage-card">
+          <div class="engage-card-title">Long-Term Contract</div>
+          <div class="engage-card-desc">Fully embedded, globally remote</div>
+        </div>
+      </div>
+
+      <a href="mailto:mansurizak@gmail.com" class="btn btn-solid">Get in Touch</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-tag">Contact</div>
+  <h2>Let's Work Together</h2>
+  <p class="contact-sub">
+    Available immediately for remote consulting, contracts,<br>and long-term partnerships worldwide.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:mansurizak@gmail.com" class="contact-btn">✉ mansurizak@gmail.com</a>
+    <a href="tel:+919712121230" class="contact-btn">📱 +91 97121 21230</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 Zakwan Mansuri · AI Automation Consultant · Ahmedabad, India</span>
+  <span class="footer-copy">Remote-first · Available globally</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    links.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? '#1a1a1a' : ''; });
+  });
+</script>
+</body>
+</html>
