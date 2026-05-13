@@ -1,887 +1,939 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zakwan Mansuri — AI Automation Consultant</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zakwan Mansuri — AI Systems & Automation Consultant</title>
+  <meta name="description" content="AI Automation Consultant building production-grade AI systems, multi-agent workflows, enterprise RAG pipelines, and intelligent automation for global clients." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #ffffff;
-    color: #1a1a1a;
-    font-size: 15px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-soft: #10161d;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #f4f7fb;
+      --muted: #97a3b6;
+      --accent: #5eead4;
+      --accent2: #60a5fa;
+      --shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 99;
-    height: 60px;
-    background: #fff;
-    border-bottom: 1px solid #e8e8e8;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 60px;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .logo {
-    font-weight: 700;
-    font-size: 16px;
-    color: #1a1a1a;
-    text-decoration: none;
-    letter-spacing: -0.3px;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  .nav-links {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-  }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, rgba(96,165,250,0.08), transparent 30%), radial-gradient(circle at top right, rgba(94,234,212,0.08), transparent 30%), var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 400;
-    color: #666;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+      opacity: 0.2;
+    }
 
-  .nav-links a:hover { color: #1a1a1a; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-  /* ── HERO ── */
-  #hero {
-    padding: 140px 60px 100px;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
 
-  .available-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #2d7a4f;
-    background: #f0faf5;
-    border: 1px solid #c3e6d4;
-    padding: 5px 12px;
-    border-radius: 20px;
-    margin-bottom: 24px;
-  }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(10,15,20,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
 
-  .green-dot {
-    width: 6px; height: 6px;
-    background: #2d7a4f;
-    border-radius: 50%;
-  }
+    .nav-inner {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(40px, 5vw, 64px);
-    line-height: 1.1;
-    letter-spacing: -1px;
-    color: #1a1a1a;
-    margin-bottom: 20px;
-  }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
 
-  .hero-sub {
-    font-size: 16px;
-    color: #555;
-    font-weight: 400;
-    line-height: 1.75;
-    margin-bottom: 32px;
-    max-width: 480px;
-  }
+    .logo span {
+      color: var(--accent);
+    }
 
-  .hero-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 11px 24px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.18s;
-    cursor: pointer;
-    border: none;
-  }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.3s ease;
+    }
 
-  .btn-solid {
-    background: #1a1a1a;
-    color: #fff;
-  }
-  .btn-solid:hover { background: #333; transform: translateY(-1px); }
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
-  .btn-border {
-    background: transparent;
-    color: #1a1a1a;
-    border: 1px solid #d0d0d0;
-  }
-  .btn-border:hover { border-color: #1a1a1a; transform: translateY(-1px); }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      position: relative;
+    }
 
-  /* Hero right — stats */
-  .hero-right {
-    background: #f8f8f6;
-    border: 1px solid #e8e8e8;
-    padding: 36px;
-    border-radius: 6px;
-  }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
 
-  .stats-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 24px;
-  }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
 
-  .stats-list {
-    list-style: none;
-    border-top: 1px solid #e8e8e8;
-  }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 14px #22c55e;
+    }
 
-  .stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid #e8e8e8;
-  }
+    h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+      font-weight: 800;
+    }
 
-  .stat-key { font-size: 13px; color: #666; font-weight: 400; }
-  .stat-val { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  .tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 20px;
-  }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
 
-  .pill {
-    font-size: 11px;
-    padding: 4px 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 20px;
-    color: #555;
-    background: #fff;
-  }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
 
-  /* ── DIVIDER ── */
-  .divider {
-    border: none;
-    border-top: 1px solid #e8e8e8;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+    .btn {
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.3s ease;
+      border: 1px solid transparent;
+    }
 
-  /* ── SECTIONS ── */
-  .section {
-    padding: 80px 60px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #081018;
+    }
 
-  .section-alt {
-    background: #f8f8f6;
-    border-top: 1px solid #e8e8e8;
-    border-bottom: 1px solid #e8e8e8;
-    padding: 80px 0;
-  }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(96,165,250,0.25);
+    }
 
-  .section-alt .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 60px;
-  }
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
 
-  .sec-tag {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 10px;
-  }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
 
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(26px, 3vw, 38px);
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    color: #1a1a1a;
-    margin-bottom: 40px;
-  }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
 
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #e8e8e8;
-    border: 1px solid #e8e8e8;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+    .stat {
+      padding: 22px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
 
-  .skill-block {
-    background: #fff;
-    padding: 28px;
-    transition: background 0.2s;
-  }
-  .skill-block:hover { background: #fafaf8; }
+    .stat h3 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
 
-  .skill-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 12px;
-  }
+    .stat p {
+      font-size: 13px;
+      margin: 0;
+    }
 
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 34px;
+      border-radius: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
 
-  .tag {
-    font-size: 11px;
-    padding: 3px 9px;
-    background: #f2f2f0;
-    border-radius: 3px;
-    color: #555;
-  }
+    .hero-card h3 {
+      font-size: 22px;
+      margin-bottom: 24px;
+    }
 
-  /* ── WORK ── */
-  .work-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: #e8e8e8;
-    border: 1px solid #e8e8e8;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-  .work-item {
-    background: #fff;
-    padding: 32px;
-    transition: background 0.2s;
-  }
-  .work-item:hover { background: #fdfcfb; }
+    .stack span {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #d8e2f1;
+      font-size: 13px;
+    }
 
-  .work-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 14px;
-  }
+    section {
+      padding: 110px 0;
+    }
 
-  .tech-tag {
-    font-size: 10px;
-    font-weight: 500;
-    padding: 3px 9px;
-    background: #f2f2f0;
-    color: #444;
-    border-radius: 3px;
-    letter-spacing: 0.02em;
-  }
+    .section-head {
+      margin-bottom: 60px;
+    }
 
-  .work-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    line-height: 1.4;
-  }
+    .mini-title {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
 
-  .work-desc {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.75;
-  }
+    h2 {
+      font-size: clamp(34px,5vw,54px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
 
-  .work-result {
-    display: inline-block;
-    margin-top: 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #2d7a4f;
-    background: #f0faf5;
-    border: 1px solid #c3e6d4;
-    padding: 5px 12px;
-    border-radius: 3px;
-  }
+    .section-head p {
+      color: var(--muted);
+      max-width: 700px;
+      font-size: 17px;
+    }
 
-  /* ── PROJECTS ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
 
-  .project-item {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    padding: 28px;
-    border-radius: 6px;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .project-item:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
-  }
+    .service {
+      padding: 30px;
+      border-radius: 26px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: 0.35s ease;
+    }
 
-  .project-num {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #bbb;
-    margin-bottom: 16px;
-  }
+    .service:hover {
+      transform: translateY(-6px);
+      border-color: rgba(94,234,212,0.2);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
 
-  .project-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    line-height: 1.4;
-  }
+    .service-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, rgba(94,234,212,0.15), rgba(96,165,250,0.15));
+      font-size: 24px;
+    }
 
-  .project-desc {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.75;
-    margin-bottom: 16px;
-  }
+    .service h3 {
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
 
-  /* ── ABOUT ── */
-  .about-layout {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 64px;
-    align-items: start;
-  }
+    .service p {
+      color: var(--muted);
+      font-size: 15px;
+    }
 
-  .about-sidebar {
-    background: #f8f8f6;
-    border: 1px solid #e8e8e8;
-    border-radius: 6px;
-    padding: 28px;
-    position: sticky;
-    top: 80px;
-  }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 24px;
+    }
 
-  .sidebar-name {
-    font-size: 16px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 2px;
-  }
-  .sidebar-role {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 20px;
-  }
+    .project {
+      padding: 34px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      transition: 0.35s ease;
+    }
 
-  .info-list { list-style: none; }
-  .info-item {
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid #e8e8e8;
-    font-size: 12.5px;
-    color: #555;
-    align-items: flex-start;
-  }
-  .info-item:last-child { border-bottom: none; }
-  .info-icon { color: #999; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+    .project:hover {
+      transform: translateY(-6px);
+    }
 
-  .about-body p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.85;
-    margin-bottom: 20px;
-  }
-  .about-body p strong { color: #1a1a1a; font-weight: 600; }
+    .project .labels {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
 
-  .about-body h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 32px 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e8e8e8;
-  }
+    .project .labels span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      color: #d8e2f1;
+    }
 
-  .engage-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 28px;
-  }
+    .project h3 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
 
-  .engage-card {
-    border: 1px solid #e8e8e8;
-    padding: 16px;
-    border-radius: 4px;
-    background: #fafaf8;
-  }
-  .engage-card-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
-  .engage-card-desc { font-size: 12px; color: #888; }
+    .project p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
 
-  /* ── CONTACT ── */
-  #contact {
-    background: #1a1a1a;
-    padding: 80px 60px;
-    text-align: center;
-  }
+    .result {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.12);
+      color: #7ff0a7;
+      border: 1px solid rgba(34,197,94,0.15);
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-  #contact .sec-tag { color: #555; }
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
-  #contact h2 {
-    color: #fff;
-    margin-bottom: 14px;
-  }
+    .tech-grid span {
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: #d8e2f1;
+      font-size: 14px;
+    }
 
-  .contact-sub {
-    font-size: 15px;
-    color: #888;
-    margin-bottom: 36px;
-    line-height: 1.7;
-  }
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 20px;
+    }
 
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+    .process-card {
+      padding: 28px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
 
-  .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border: 1px solid #333;
-    color: #ccc;
-    text-decoration: none;
-    font-size: 13px;
-    border-radius: 4px;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-  }
-  .contact-btn:hover { border-color: #666; color: #fff; }
+    .process-card .num {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
 
-  /* ── FOOTER ── */
-  footer {
-    background: #111;
-    border-top: 1px solid #222;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-copy { font-size: 12px; color: #444; }
+    .process-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
 
-  /* ── Reveal ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+    .process-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-  /* ── Responsive ── */
-  @media (max-width: 900px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
-    .section { padding: 60px 24px; }
-    .section-alt .section-inner { padding: 0 24px; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .work-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr 1fr; }
-    .about-layout { grid-template-columns: 1fr; gap: 32px; }
-    .about-sidebar { position: static; }
-    #contact { padding: 60px 24px; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
-  }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: start;
+    }
 
-  @media (max-width: 560px) {
-    .skills-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .engage-grid { grid-template-columns: 1fr; }
-  }
-</style>
+    .about-card,
+    .contact-box {
+      padding: 34px;
+      border-radius: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .about-card h3 {
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .contact-box h3 {
+      font-size: 42px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-link {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: #d8e2f1;
+      transition: 0.3s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateX(4px);
+      border-color: rgba(94,234,212,0.3);
+    }
+
+    footer {
+      padding: 40px 0 60px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 60px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .projects,
+      .services-grid,
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      h2 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#hero" class="logo">Zakwan Mansuri</a>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="container nav-inner">
+    <a href="#" class="logo">Zakwan<span>.</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#stack">Tech Stack</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <div class="available-tag">
-      <div class="green-dot"></div>
-      Available for remote engagements
-    </div>
-    <h1>AI Automation Consultant</h1>
-    <p class="hero-sub">
-      6+ years designing and deploying intelligent systems — multi-agent workflows, LLM automation, RAG pipelines, and end-to-end ML — for clients across India, Australia, and international markets.
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-solid">Get in Touch</a>
-      <a href="#work" class="btn btn-border">View Work</a>
-    </div>
-  </div>
+<section class="hero">
+  <div class="container hero-grid">
 
-  <div class="hero-right">
-    <div class="stats-label">At a Glance</div>
-    <ul class="stats-list">
-      <li class="stat-row">
-        <span class="stat-key">Experience</span>
-        <span class="stat-val">6+ Years</span>
-      </li>
-      <li class="stat-row">
-        <span class="stat-key">Analyst time reduced</span>
-        <span class="stat-val">Up to 85%</span>
-      </li>
-      <li class="stat-row">
-        <span class="stat-key">Data access speed</span>
-        <span class="stat-val">90% faster</span>
-      </li>
-      <li class="stat-row">
-        <span class="stat-key">Model fine-tuned</span>
-        <span class="stat-val">30B Params</span>
-      </li>
-      <li class="stat-row">
-        <span class="stat-key">Markets served</span>
-        <span class="stat-val">India · AU · Global</span>
-      </li>
-    </ul>
-    <div class="tag-row">
-      <span class="pill">Agentic AI</span>
-      <span class="pill">LLM Fine-tuning</span>
-      <span class="pill">RAG</span>
-      <span class="pill">ML Pipelines</span>
-      <span class="pill">Remote-First</span>
-    </div>
-  </div>
-</section>
+    <div>
+      <div class="tag">
+        <div class="dot"></div>
+        Available Worldwide for Remote AI Consulting
+      </div>
 
-<hr class="divider">
+      <h1>
+        Building <span class="gradient">AI Systems</span><br>
+        That Actually Work.
+      </h1>
 
-<!-- SKILLS -->
-<section class="section-alt" id="skills">
-  <div class="section-inner">
-    <div class="sec-tag">Core Expertise</div>
-    <h2>Skills & Technologies</h2>
-    <div class="skills-grid">
-      <div class="skill-block reveal">
-        <div class="skill-name">Agentic AI & LLMs</div>
-        <div class="tags">
-          <span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">CrewAI</span>
-          <span class="tag">SmolAgents</span><span class="tag">Multi-Agent Systems</span>
-          <span class="tag">RAG Architecture</span><span class="tag">Prompt Engineering</span>
-          <span class="tag">Fine-tuning</span><span class="tag">LiteLLM</span><span class="tag">LlamaIndex</span>
-        </div>
+      <p>
+        I design and deploy production-grade AI systems, multi-agent workflows, enterprise RAG pipelines, conversational AI platforms, and intelligent automation for startups, enterprises, and global remote clients.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+        <a href="#projects" class="btn btn-secondary">View Projects</a>
       </div>
-      <div class="skill-block reveal">
-        <div class="skill-name">ML & Data Science</div>
-        <div class="tags">
-          <span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">PyTorch</span>
-          <span class="tag">XGBoost</span><span class="tag">Random Forest</span>
-          <span class="tag">NLP</span><span class="tag">CNNs</span><span class="tag">LSTM</span>
-          <span class="tag">Forecasting</span><span class="tag">Anomaly Detection</span>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>6+</h3>
+          <p>Years Experience</p>
         </div>
-      </div>
-      <div class="skill-block reveal">
-        <div class="skill-name">Vector & Semantic Search</div>
-        <div class="tags">
-          <span class="tag">ChromaDB</span><span class="tag">Pinecone</span><span class="tag">FAISS</span>
-          <span class="tag">pgvector</span><span class="tag">Semantic Search</span>
-          <span class="tag">Vector Indexing</span><span class="tag">MiniLM Embeddings</span>
+
+        <div class="stat">
+          <h3>30B</h3>
+          <p>Fine-Tuned LLM</p>
         </div>
-      </div>
-      <div class="skill-block reveal">
-        <div class="skill-name">Backend & Infrastructure</div>
-        <div class="tags">
-          <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span>
-          <span class="tag">MySQL</span><span class="tag">Docker</span><span class="tag">AWS</span>
-          <span class="tag">REST APIs</span><span class="tag">SSE Streaming</span><span class="tag">CI/CD</span>
+
+        <div class="stat">
+          <h3>85%</h3>
+          <p>Ops Reduction</p>
         </div>
-      </div>
-      <div class="skill-block reveal">
-        <div class="skill-name">Automation & Tooling</div>
-        <div class="tags">
-          <span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">OCR Pipelines</span>
-          <span class="tag">STT / TTS</span><span class="tag">IVR</span>
-          <span class="tag">Streamlit</span><span class="tag">Tableau</span><span class="tag">Power BI</span>
-        </div>
-      </div>
-      <div class="skill-block reveal">
-        <div class="skill-name">Languages & Data</div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">R</span>
-          <span class="tag">Pandas</span><span class="tag">NumPy</span>
-          <span class="tag">Feature Engineering</span><span class="tag">EDA</span><span class="tag">Statistics</span>
+
+        <div class="stat">
+          <h3>Global</h3>
+          <p>Remote Clients</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- WORK -->
-<section class="section" id="work">
-  <div class="sec-tag">Selected Projects</div>
-  <h2>Client Engagements</h2>
-  <div class="work-grid">
-
-    <div class="work-item reveal">
-      <div class="work-tech">
-        <span class="tech-tag">LLM Fine-tuning (30B)</span>
-        <span class="tech-tag">vLLM</span>
-        <span class="tech-tag">Multi-tenant PostgreSQL</span>
+    <div class="hero-card reveal">
+      <div style="display:flex;justify-content:center;margin-bottom:28px;">
+        <div style="width:240px;height:240px;border-radius:50%;padding:8px;background:linear-gradient(135deg,#5eead4,#60a5fa);box-shadow:0 20px 60px rgba(96,165,250,0.22);">
+          <img src="profile.jpg" alt="Zakwan Mansuri" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">
+        </div>
       </div>
-      <div class="work-title">Regulatory AI & Compliance Automation</div>
-      <div class="work-desc">Fine-tuned a 30B parameter model on domain-specific regulatory data. Built agentic reasoning loops with tool-calling for document retrieval, compliance flagging, and structured audit reporting. Deployed on private GPU infrastructure with LiteLLM orchestration.</div>
-      <span class="work-result">↓ 70% reduction in manual review time</span>
-    </div>
+      <h3>Core Technologies</h3>
 
-    <div class="work-item reveal">
-      <div class="work-tech">
-        <span class="tech-tag">FastAPI</span>
-        <span class="tech-tag">SSE Streaming</span>
-        <span class="tech-tag">PostgreSQL JSONB</span>
+      <div class="stack">
+        <span>LangChain</span>
+        <span>LangGraph</span>
+        <span>CrewAI</span>
+        <span>OpenAI</span>
+        <span>Gemini</span>
+        <span>Ollama</span>
+        <span>LlamaIndex</span>
+        <span>FastAPI</span>
+        <span>PostgreSQL</span>
+        <span>Docker</span>
+        <span>vLLM</span>
+        <span>RAG Systems</span>
+        <span>n8n</span>
+        <span>Vector DBs</span>
+        <span>Pinecone</span>
+        <span>FAISS</span>
+        <span>Qdrant</span>
+        <span>Redis</span>
+        <span>TensorFlow</span>
+        <span>PyTorch</span>
+        <span>LLMOps</span>
+        <span>MCP Servers</span>
       </div>
-      <div class="work-title">Conversational Analytics Agent</div>
-      <div class="work-desc">Production AI assistant embedded in a financial ERP dashboard. Multi-turn memory, real-time streaming, per-user conversation history. Enabled C-suite and finance teams to query complex datasets in plain English without analyst dependency.</div>
-      <span class="work-result">↓ 85% reduction in analyst turnaround</span>
-    </div>
-
-    <div class="work-item reveal">
-      <div class="work-tech">
-        <span class="tech-tag">OCR</span>
-        <span class="tech-tag">STT / TTS</span>
-        <span class="tech-tag">IVR</span>
-        <span class="tech-tag">MySQL</span>
-      </div>
-      <div class="work-title">Invoice & Document Processing Pipeline</div>
-      <div class="work-desc">Multimodal automation pipeline integrating invoice OCR, bank statement parsing, and an IVR calling system. Mapped extracted data directly into enterprise databases, eliminating manual data entry for accounts teams.</div>
-      <span class="work-result">↑ 25+ hours saved per week</span>
-    </div>
-
-    <div class="work-item reveal">
-      <div class="work-tech">
-        <span class="tech-tag">NL2SQL</span>
-        <span class="tech-tag">ChromaDB</span>
-        <span class="tech-tag">Multi-Model Routing</span>
-      </div>
-      <div class="work-title">NL2SQL Executive Intelligence Engine</div>
-      <div class="work-desc">Natural language to SQL over a 200+ table production database. Cost-optimised pipeline routing queries by complexity across Gemini 1.5 Flash, Phi-3 Mini, and Gemma 3. Schema-aware retrieval via MiniLM embeddings and ChromaDB.</div>
-      <span class="work-result">↓ 90% faster internal data turnaround</span>
-    </div>
-
-    <div class="work-item reveal">
-      <div class="work-tech">
-        <span class="tech-tag">XGBoost</span>
-        <span class="tech-tag">Random Forest</span>
-        <span class="tech-tag">Geospatial Features</span>
-      </div>
-      <div class="work-title">Demand Forecasting & Resource Optimisation</div>
-      <div class="work-desc">Predictive models for peak-hour demand and regional supply shortages on a ride-sharing platform. Geospatial and temporal feature engineering at scale with automated retraining and production deployment.</div>
-      <span class="work-result">↑ 30% improved resource allocation</span>
-    </div>
-
-    <div class="work-item reveal">
-      <div class="work-tech">
-        <span class="tech-tag">CrewAI</span>
-        <span class="tech-tag">LangChain</span>
-        <span class="tech-tag">Streamlit</span>
-      </div>
-      <div class="work-title">Multi-Agent Financial Research System</div>
-      <div class="work-desc">Four specialised agents (research, analysis, sentiment, synthesis) autonomously generating equity research reports. Live data from Yahoo Finance and Tavily. 100+ LLM provider support with zero-config model swapping. ASX and global coverage.</div>
-      <span class="work-result">Global equity research automation</span>
     </div>
 
   </div>
 </section>
 
-<hr class="divider">
+<section id="services">
+  <div class="container">
 
-<!-- PROJECTS -->
-<section class="section-alt" id="projects">
-  <div class="section-inner">
-    <div class="sec-tag">Open Source</div>
-    <h2>Notable Projects</h2>
-    <div class="projects-grid">
+    <div class="section-head">
+      <div class="mini-title">Services</div>
+      <h2>AI Solutions for Modern Businesses</h2>
+      <p>
+        From AI strategy to production deployment — I help companies automate operations, build intelligent products, and integrate advanced AI into real business workflows.
+      </p>
+    </div>
 
-      <div class="project-item reveal">
-        <div class="project-num">01</div>
-        <div class="project-title">AI-FAQs — FAQ Generation Tool</div>
-        <div class="project-desc">LLM-powered tool that automatically generates structured FAQs from business data. Integrated as a RAG knowledge base for in-product chatbots. Solo developer and open-source maintainer.</div>
-        <div class="tags">
-          <span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Python</span><span class="tag">Open Source</span>
-        </div>
+    <div class="services-grid">
+
+      <div class="service reveal">
+        <div class="service-icon">🤖</div>
+        <h3>AI Agents & Multi-Agent Systems</h3>
+        <p>Autonomous AI workflows using LangGraph, CrewAI, tool-calling, reasoning loops, memory systems, and enterprise orchestration.</p>
       </div>
 
-      <div class="project-item reveal">
-        <div class="project-num">02</div>
-        <div class="project-title">MCQ Generation System</div>
-        <div class="project-desc">Production-ready MCQ generator supporting GPT-4, Gemini, and local Ollama. Processes PDFs and text, exports structured CSV output with grammar and complexity evaluation.</div>
-        <div class="tags">
-          <span class="tag">LangChain LCEL</span><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Ollama</span>
-        </div>
+      <div class="service reveal">
+        <div class="service-icon">🧠</div>
+        <h3>Enterprise RAG Systems</h3>
+        <p>Context-aware AI systems powered by vector databases, semantic search, embeddings, and private enterprise knowledge retrieval.</p>
       </div>
 
-      <div class="project-item reveal">
-        <div class="project-num">03</div>
-        <div class="project-title">Recommendation & Matching Systems</div>
-        <div class="project-desc">Recommendation engines for talent platforms and e-commerce using NLP-based semantic similarity, unsupervised clustering, and content-based filtering. 20–30% improvement in match accuracy.</div>
-        <div class="tags">
-          <span class="tag">NLP</span><span class="tag">Clustering</span><span class="tag">Semantic Similarity</span>
-        </div>
+      <div class="service reveal">
+        <div class="service-icon">⚡</div>
+        <h3>AI Workflow Automation</h3>
+        <p>Automate repetitive business operations using AI pipelines, OCR, integrations, APIs, n8n, Zapier, and custom backend systems.</p>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">💬</div>
+        <h3>Conversational AI & Chatbots</h3>
+        <p>Production-ready AI assistants with memory, streaming responses, voice support, analytics integration, and multi-platform deployment.</p>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">📊</div>
+        <h3>Predictive ML Systems</h3>
+        <p>Forecasting, anomaly detection, recommendation systems, NLP pipelines, clustering, and machine learning infrastructure.</p>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">🚀</div>
+        <h3>Private LLM Deployment</h3>
+        <p>GPU inference pipelines with Ollama, vLLM, LiteLLM, Docker, Linux servers, and scalable production deployment.</p>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">🛠️</div>
+        <h3>Custom AI SaaS Development</h3>
+        <p>End-to-end AI SaaS products with dashboards, authentication, APIs, subscriptions, analytics, and scalable backend systems.</p>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">📞</div>
+        <h3>Voice AI & IVR Systems</h3>
+        <p>Voice assistants, STT/TTS systems, AI calling workflows, IVR automation, and multilingual conversational pipelines.</p>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">🔍</div>
+        <h3>Semantic Search & Vector DBs</h3>
+        <p>High-performance semantic search systems using Pinecone, FAISS, ChromaDB, pgvector, and Qdrant infrastructure.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="sec-tag">Background</div>
-  <h2>About Me</h2>
-  <div class="about-layout">
+<section id="projects">
+  <div class="container">
 
-    <div class="about-sidebar">
-      <div class="sidebar-name">Zakwan Mansuri</div>
-      <div class="sidebar-role">AI Automation Consultant · ML Engineer</div>
-      <ul class="info-list">
-        <li class="info-item">
-          <span class="info-icon">📍</span>
-          <span>Ahmedabad, India<br>Remote — Worldwide</span>
-        </li>
-        <li class="info-item">
-          <span class="info-icon">✉</span>
-          <span>mansurizak@gmail.com</span>
-        </li>
-        <li class="info-item">
-          <span class="info-icon">📱</span>
-          <span>+91 97121 21230</span>
-        </li>
-        <li class="info-item">
-          <span class="info-icon">🎓</span>
-          <span>B.E. Information Technology<br>GEC Gandhinagar, 2017</span>
-        </li>
-        <li class="info-item">
-          <span class="info-icon">✅</span>
-          <span>Immediately available</span>
-        </li>
-      </ul>
+    <div class="section-head">
+      <div class="mini-title">Selected Work</div>
+      <h2>Production Systems & Client Engagements</h2>
     </div>
 
-    <div class="about-body">
-      <p>I'm an <strong>AI Automation Consultant</strong> with 6+ years of experience designing and deploying intelligent systems for clients across India, Australia, and international markets. I work across the full lifecycle — from problem definition and architecture through to production deployment.</p>
-      <p>My specialisation is <strong>multi-agent AI workflows</strong>, LLM-powered automation, RAG pipelines, and end-to-end ML systems. I've helped enterprise and SMB clients reduce manual effort significantly, automate document-heavy processes, and make complex data accessible in plain English.</p>
-      <p>I'm model-agnostic — OpenAI, Gemini, Ollama, or fine-tuned private models — and focus on what actually works for the client's use case. I care about <strong>measurable outcomes</strong>, not hype.</p>
-      <p>Outside client work, I contribute to open source projects, speak at Google Meetups and Data Science Bootcamps in Ahmedabad, and continuously upskill in areas like LangGraph, advanced agentic systems, and GPU model serving.</p>
+    <div class="projects">
 
-      <h3>Engagement Models</h3>
-      <div class="engage-grid">
-        <div class="engage-card">
-          <div class="engage-card-title">Hourly Consulting</div>
-          <div class="engage-card-desc">Flexible on-demand advisory and development</div>
+      <div class="project reveal">
+        <div class="labels">
+          <span>LLM Fine-Tuning</span>
+          <span>vLLM</span>
+          <span>Compliance AI</span>
         </div>
-        <div class="engage-card">
-          <div class="engage-card-title">Fixed-Price Projects</div>
-          <div class="engage-card-desc">Scoped deliverables with clear outcomes</div>
-        </div>
-        <div class="engage-card">
-          <div class="engage-card-title">Monthly Retainer</div>
-          <div class="engage-card-desc">Ongoing embedded consulting partnership</div>
-        </div>
-        <div class="engage-card">
-          <div class="engage-card-title">Long-Term Contract</div>
-          <div class="engage-card-desc">Fully embedded, globally remote</div>
-        </div>
+
+        <h3>Regulatory AI & Compliance Automation</h3>
+
+        <p>
+          Fine-tuned a 30B parameter language model on domain-specific regulatory and financial datasets. Built agentic reasoning systems for automated compliance verification, document analysis, and audit reporting.
+        </p>
+
+        <div class="result">70% reduction in manual review time</div>
       </div>
 
-      <a href="mailto:mansurizak@gmail.com" class="btn btn-solid">Get in Touch</a>
+      <div class="project reveal">
+        <div class="labels">
+          <span>FastAPI</span>
+          <span>PostgreSQL</span>
+          <span>SSE Streaming</span>
+        </div>
+
+        <h3>Conversational Analytics Assistant</h3>
+
+        <p>
+          Built a conversational AI platform embedded into a financial ERP dashboard allowing executives and finance teams to query complex datasets using natural language.
+        </p>
+
+        <div class="result">85% faster analyst turnaround</div>
+      </div>
+
+      <div class="project reveal">
+        <div class="labels">
+          <span>OCR</span>
+          <span>Automation</span>
+          <span>Voice AI</span>
+        </div>
+
+        <h3>Invoice & Document Processing Pipeline</h3>
+
+        <p>
+          Designed an automation pipeline integrating OCR, bank statement parsing, IVR systems, STT/TTS, and enterprise database mapping.
+        </p>
+
+        <div class="result">25+ hours saved weekly</div>
+      </div>
+
+      <div class="project reveal">
+        <div class="labels">
+          <span>NL2SQL</span>
+          <span>ChromaDB</span>
+          <span>Semantic Search</span>
+        </div>
+
+        <h3>Executive Intelligence Engine</h3>
+
+        <p>
+          Production-grade natural language to SQL system for querying 200+ table databases using plain English with intelligent multi-model routing.
+        </p>
+
+        <div class="result">90% faster internal data access</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="mini-title">Tech Stack</div>
+      <h2>Tools & Technologies</h2>
+    </div>
+
+    <div class="tech-grid reveal">
+      <span>Python</span>
+      <span>FastAPI</span>
+      <span>LangChain</span>
+      <span>LangGraph</span>
+      <span>CrewAI</span>
+      <span>OpenAI</span>
+      <span>Gemini</span>
+      <span>Ollama</span>
+      <span>LlamaIndex</span>
+      <span>TensorFlow</span>
+      <span>PyTorch</span>
+      <span>XGBoost</span>
+      <span>Docker</span>
+      <span>Redis</span>
+      <span>PostgreSQL</span>
+      <span>MySQL</span>
+      <span>MongoDB</span>
+      <span>Qdrant</span>
+      <span>Pinecone</span>
+      <span>FAISS</span>
+      <span>ChromaDB</span>
+      <span>Linux</span>
+      <span>GitHub Actions</span>
+      <span>AWS</span>
+      <span>n8n</span>
+      <span>Zapier</span>
+      <span>WebSockets</span>
+      <span>RabbitMQ</span>
+      <span>Celery</span>
+      <span>LLMOps</span>
+      <span>RAG</span>
+      <span>MCP Servers</span>
+      <span>CUDA Inference</span>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="sec-tag">Contact</div>
-  <h2>Let's Work Together</h2>
-  <p class="contact-sub">
-    Available immediately for remote consulting, contracts,<br>and long-term partnerships worldwide.
-  </p>
-  <div class="contact-links">
-    <a href="mailto:mansurizak@gmail.com" class="contact-btn">✉ mansurizak@gmail.com</a>
-    <a href="tel:+919712121230" class="contact-btn">📱 +91 97121 21230</a>
+<section>
+  <div class="container">
+
+    <div class="section-head">
+      <div class="mini-title">Process</div>
+      <h2>How I Work</h2>
+    </div>
+
+    <div class="process">
+
+      <div class="process-card reveal">
+        <div class="num">01</div>
+        <h4>Discovery</h4>
+        <p>Understanding your business workflows, bottlenecks, and automation opportunities.</p>
+      </div>
+
+      <div class="process-card reveal">
+        <div class="num">02</div>
+        <h4>Architecture</h4>
+        <p>Designing scalable AI systems, data pipelines, infrastructure, and workflows.</p>
+      </div>
+
+      <div class="process-card reveal">
+        <div class="num">03</div>
+        <h4>Development</h4>
+        <p>Building production-grade AI applications with performance, reliability, and security in mind.</p>
+      </div>
+
+      <div class="process-card reveal">
+        <div class="num">04</div>
+        <h4>Deployment</h4>
+        <p>Launching scalable AI systems with monitoring, optimisation, and long-term support.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+
+    <div class="about-card reveal">
+      <h3>About Me</h3>
+
+      <p>
+        I'm Zakwan Mansuri — an AI Automation Consultant and ML Engineer focused on building intelligent systems that create measurable business impact.
+      </p>
+
+      <p>
+        Over the last 6+ years, I've worked with clients across India, Australia, and international markets building AI-powered automation systems, enterprise RAG pipelines, multi-agent workflows, and production ML infrastructure.
+      </p>
+
+      <p>
+        My approach is practical, outcome-focused, and deeply technical — combining AI engineering with business understanding.
+      </p>
+    </div>
+
+    <div class="contact-box reveal" id="contact">
+      <div class="mini-title">Contact</div>
+
+      <h3>Let's Build Something Intelligent.</h3>
+
+      <p>
+        Available immediately for consulting, contracts, AI product development, automation systems, and long-term remote collaborations.
+      </p>
+
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:mansurizak@gmail.com">✉ mansurizak@gmail.com</a>
+        <a class="contact-link" href="tel:+919712121230">📱 +91 97121 21230</a>
+        <a class="contact-link" href="https://github.com/zaqks" target="_blank">💻 github.com/zaqks</a>
+        <a class="contact-link" href="#">🔗 Add Your LinkedIn Here</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <footer>
-  <span class="footer-copy">© 2025 Zakwan Mansuri · AI Automation Consultant · Ahmedabad, India</span>
-  <span class="footer-copy">Remote-first · Available globally</span>
+  <div class="container">
+    © 2026 Zakwan Mansuri — AI Systems & Automation Consultant · Ahmedabad, India · Remote Worldwide
+  </div>
 </footer>
 
 <script>
   const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => obs.observe(el));
 
-  const sections = document.querySelectorAll('section[id]');
-  const links = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let cur = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-    links.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? '#1a1a1a' : ''; });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+      }
+    });
+  }, {
+    threshold: 0.1
   });
+
+  reveals.forEach(item => observer.observe(item));
 </script>
+
 </body>
 </html>
